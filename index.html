@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <canvas id="tetrisCanvas"></canvas>
+
+    <div class="center">
+        <h1>Tetris</h1>
+        <div>
+            <p>Score: <span id="score">0</span></p>
+            <p>Lines: <span id="lines">0</span></p>
+            <p>Level: <span id="level">0</span></p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <h2>Controls:</h2>
+
+        <ul>
+            <li>← → : Move piece</li>
+            <li>↑ : Rotate piece</li>
+            <li>↓ : Soft drop</li>
+            <li>Space : Hard drop</li>
+        </ul>
+    </div>
+
+
+    <script src="tetris_logic.js"></script>
+    <script src="renderer.js"></script> 
+    <script src="controller.js"></script>
+
+</body>
+
+</html>
