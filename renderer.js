@@ -27,5 +27,14 @@ function draw_piece_test(piece) {
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     row_col();                    
-    draw_piece_test(current_piece); 
+    for (let r = 0; r < 20; r++) {
+        for (let c = 0; c < 10; c++) {
+            if (board[r][c] !== 0) {
+                ctx.fillStyle = board[r][c];
+                ctx.fillRect(c * 30, r * 30, 30, 30);
+            }
+        }
+    }
+
+    draw_piece_test(current_piece);  
 }

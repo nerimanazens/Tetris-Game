@@ -33,4 +33,13 @@ function getRandomPiece() {
     };
 }
 
+function lock_piece() {
+    for (let i = 0; i < current_piece.shape.length; i++) {
+        for (let j = 0; j < current_piece.shape[i].length; j++) {
+            if (current_piece.shape[i][j] === 1) {
+                board[current_piece.y + i][current_piece.x + j] = current_piece.color;
+            }
+        }
+    }
+}
 
