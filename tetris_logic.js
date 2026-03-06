@@ -43,3 +43,54 @@ function lock_piece() {
     }
 }
 
+let lastTime = 0;
+let dropInterval = 1000; 
+
+function gameLoop(timestamp) {
+    if (timestamp - lastTime >= dropInterval) {
+        move_piece('down');
+        lastTime = timestamp;
+    }
+    requestAnimationFrame(gameLoop);
+}
+requestAnimationFrame(gameLoop);
+
+
+function collusion_check(offsetX = 0, offsetY = 0) {
+    for (let i = 0; i < current_piece.shape.length; i++) {
+        for (let j = 0; j < current_piece.shape[i].length; j++) {
+            if (current_piece.shape[i][j] === 1) {
+                let newX = current_piece.x + j + offsetX;
+                let newY = current_piece.y + i + offsetY;
+                if (newX < 0 || newX >= 10 || newY >= 20) return true;
+                if (newY >= 0 && board[newY][newX] !== 0) return true;
+            }
+        }
+    }
+    return false;
+}
+function rotate_piece() {
+    const newShape = [];
+    for (let j = 0; j < current_piece.shape[0].length; j++) {
+        const newRow = [];
+        for (let i = current_piece.shape.length - 1; i >= 0; i--) {
+            newRow.push(current_piece.shape[i][j]);
+        }
+        newShape.push(newRow);
+    }
+    current_piece.shape = newShape;
+    if (collusion_check(0, 0)) {
+        current_piece.shape = oldShape;
+    }
+    render();
+}
+function clear_lines() {
+    for (let r = 19; r >= 0; r--) {
+        if (board[r].every(cell => cell !== 0)) {
+            
+            board.splice(r, 1);
+            board.unshift(new Array(10).fill(0));
+            r++; 
+        }
+    }
+}
