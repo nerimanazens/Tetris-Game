@@ -26,7 +26,7 @@ function draw_piece_test(piece) {
 }
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    row_col();                    
+    row_col();
     for (let r = 0; r < 20; r++) {
         for (let c = 0; c < 10; c++) {
             if (board[r][c] !== 0) {
@@ -36,5 +36,15 @@ function render() {
         }
     }
 
-    draw_piece_test(current_piece);  
+    draw_piece_test(current_piece);
+
+    if (isPaused) {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 36px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2);
+    }
 }
