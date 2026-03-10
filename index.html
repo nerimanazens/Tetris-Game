@@ -10,7 +10,7 @@
 
 <body>
 
-    <canvas id="tetrisCanvas"></canvas>
+
 
     <div class="center">
         <h1>Tetris</h1>
@@ -20,8 +20,22 @@
             <p>Level: <span id="level">0</span></p>
         </div>
         <button id="startBtn">Start Game</button>
+        <button id="restartBtn" style="display:none;">Restart</button>
+        <p class="startup-notice">
+            Tetris &copy; 1985~2026 Tetris Holding. Tetris logos, Tetris theme song and Tetriminos are trademarks of Tetris Holding. The Tetris trade dress is owned by Tetris Holding. Licensed to The Tetris Company. Tetris Game Design by Alexey Pajitnov. Tetris Logo Design by Roger Dean. All Rights Reserved.
+        </p>
     </div>
-
+    <canvas id="tetrisCanvas"></canvas>
+    <div class="side-panel">
+        <div class="preview-container">
+            <h3>NEXT</h3>
+            <canvas id="nextCanvas" width="120" height="120"></canvas>
+        </div>
+        <div class="preview-container">
+            <h3>HOLD</h3>
+            <canvas id="holdCanvas" width="120" height="120"></canvas>
+        </div>
+    </div>
     <div class="controls">
         <h2>Controls:</h2>
 
@@ -30,12 +44,13 @@
             <li>↑ : Rotate piece</li>
             <li>↓ : Soft drop</li>
             <li>Space : Hard drop</li>
+            <li>Shift / C : Hold piece</li>
         </ul>
     </div>
 
 
     <script src="tetris_logic.js"></script>
-    <script src="renderer.js"></script> 
+    <script src="renderer.js"></script>
     <script src="controller.js"></script>
 
 </body>

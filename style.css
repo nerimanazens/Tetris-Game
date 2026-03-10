@@ -1,24 +1,65 @@
-*{
+* {
     margin: 0;
-   overflow: hidden;
+    overflow: hidden;
 }
 
 body {
     display: flex;
     justify-content: space-between;
-    
+
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #b0a3f0;
     padding: 20px 100px;
-    
+
 }
-.center div{
+
+.center div {
     width: 300px;
     background-color: #333;
 }
-canvas{
+
+.center {
+    width: 300px;
+}
+
+.startup-notice {
+    margin-top: 16px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: #111;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+#tetrisCanvas {
     width: 300px;
     height: 600px;
     border: 1px solid #000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preview-container {
+    text-align: center;
+}
+
+.preview-container h3 {
+    color: white;
+    font-family: monospace;
+    margin-bottom: 5px;
+}
+
+#holdCanvas,
+#nextCanvas {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #000;
+    background-color: #111;
 }
