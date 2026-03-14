@@ -125,11 +125,13 @@ function getRandomPiece() {
     return createPiece(pieceKey);
 }
 
-let next_piece = getRandomPiece();
+const NEXT_PIECES_COUNT = 6;
+let next_pieces = [];
+for (let i = 0; i < NEXT_PIECES_COUNT; i++) next_pieces.push(getRandomPiece());
 
 function spawnNextPiece() {
-    const piece = next_piece;
-    next_piece = getRandomPiece();
+    const piece = next_pieces.shift();
+    next_pieces.push(getRandomPiece());
 
     return {
         ...piece,
@@ -211,13 +213,13 @@ function rotate_piece() {
 
     render();
 }
-let lines=0;
+let lines = 0;
 let score = 0;
 let level = 1;
 
 function clear_lines() {
     let cleared = 0;
-    
+
     for (let r = BOARD_HEIGHT - 1; r >= 0; r--) {
         if (board[r].every(cell => cell !== 0)) {
             board.splice(r, 1);
@@ -229,10 +231,10 @@ function clear_lines() {
 
     if (cleared > 0) {
         lines += cleared;
-        
+
         const points = [0, 100, 300, 500, 800];
         score += points[cleared] * level;
-        
+
         level = Math.floor(lines / 10) + 1;
         dropInterval = Math.max(100, 1000 - (level - 1) * 100);
 
@@ -272,7 +274,8 @@ function restartGame() {
     bag = [];
     hold_piece = null;
     canHold = true;
-    next_piece = getRandomPiece();
+    next_pieces = [];
+    for (let i = 0; i < NEXT_PIECES_COUNT; i++) next_pieces.push(getRandomPiece());
     current_piece = spawnNextPiece();
     gameStarted = true;
     isPaused = false;

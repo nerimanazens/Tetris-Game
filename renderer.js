@@ -132,7 +132,32 @@ function draw_preview(previewCtx, previewCanvas, piece) {
 }
 
 function draw_next() {
-    draw_preview(nextCtx, nextCanvas, next_piece);
+    nextCtx.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
+    nextCtx.fillStyle = '#111';
+    nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+
+    const slotHeight = 80;
+    const blockSize = 20;
+
+    next_pieces.forEach((piece, index) => {
+        if (!piece) return;
+        const cols = piece.shape[0].length;
+        const rows = piece.shape.length;
+        const offsetX = (nextCanvas.width - cols * blockSize) / 2;
+        const slotTop = index * slotHeight;
+        const offsetY = slotTop + (slotHeight - rows * blockSize) / 2;
+
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                if (piece.shape[i][j] === 1) {
+                    nextCtx.fillStyle = piece.color;
+                    nextCtx.fillRect(offsetX + j * blockSize, offsetY + i * blockSize, blockSize, blockSize);
+                    nextCtx.strokeStyle = '#000';
+                    nextCtx.strokeRect(offsetX + j * blockSize, offsetY + i * blockSize, blockSize, blockSize);
+                }
+            }
+        }
+    });
 }
 
 function draw_hold() {
