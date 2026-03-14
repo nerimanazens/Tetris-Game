@@ -79,7 +79,8 @@ function startCountdown(onComplete) {
 document.getElementById('startBtn').addEventListener('click', () => {
     if (!gameStarted) {
         gameStarted = true;
-        document.getElementById('startBtn').disabled = true;
+        document.getElementById('startBtn').style.display = 'none';
+        document.getElementById('canvasOverlay').style.display = 'none';
         startGameLoop();
         startCountdown(() => {
             lastTime = performance.now();
@@ -265,6 +266,7 @@ function game_over() {
     ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
 
     document.getElementById('restartBtn').style.display = 'inline-block';
+    document.getElementById('canvasOverlay').style.display = 'flex';
 }
 
 function restartGame() {
@@ -284,6 +286,7 @@ function restartGame() {
     document.getElementById('lines').textContent = '0';
     document.getElementById('level').textContent = '0';
     document.getElementById('restartBtn').style.display = 'none';
+    document.getElementById('canvasOverlay').style.display = 'none';
     game_sounds.music.currentTime = 0;
     startGameLoop();
     startCountdown(() => {

@@ -69,3 +69,13 @@ body {
     border: 1px solid #000;
     background-color: #111;
 }
+
+#startBtn {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}

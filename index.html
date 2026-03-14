@@ -6,6 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .canvas-wrapper {
+            position: relative;
+            line-height: 0;
+        }
+        #tetrisCanvas {
+            display: block;
+        }
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            background-color: rgba(0, 0, 0, 0.55);
+        }
+        .canvas-overlay button {
+            padding: 12px 32px;
+            font-size: 18px;
+            font-family: monospace;
+            font-weight: bold;
+            background-color: #7c6fe0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        .canvas-overlay button:hover { background-color: #5a4fc7; }
+        .canvas-overlay button:disabled { opacity: 0.5; cursor: default; }
+        .canvas-overlay #startBtn { background-color: #7c6fe0; padding: 12px 32px; font-size: 18px; border-radius: 8px; }
+    </style>
 </head>
 
 <body>
@@ -19,15 +56,19 @@
             <p>Lines: <span id="lines">0</span></p>
             <p>Level: <span id="level">0</span></p>
         </div>
-        <button id="startBtn">Start Game</button>
-        <button id="restartBtn" style="display:none;">Restart</button>
         <p class="startup-notice">
             Tetris &copy; 1985~2026 Tetris Holding. Tetris logos, Tetris theme song and Tetriminos are trademarks of
             Tetris Holding. The Tetris trade dress is owned by Tetris Holding. Licensed to The Tetris Company. Tetris
             Game Design by Alexey Pajitnov. Tetris Logo Design by Roger Dean. All Rights Reserved.
         </p>
     </div>
-    <canvas id="tetrisCanvas"></canvas>
+    <div class="canvas-wrapper">
+        <canvas id="tetrisCanvas"></canvas>
+        <div class="canvas-overlay" id="canvasOverlay">
+            <button id="startBtn">Start Game</button>
+            <button id="restartBtn" style="display:none;">Restart</button>
+        </div>
+    </div>
     <div class="side-panel">
         <div class="preview-container">
             <h3>NEXT</h3>
